@@ -3,8 +3,8 @@ from flask_restful import Api
 from flask_pymongo import PyMongo, MongoClient
 from flask_cors import CORS
 import urllib
-import war_restful_api.resources.war
-import war_restful_api.resources.user
+from war_restful_api.resources.war import War
+from war_restful_api.resources.user import User
 import os
 
 
@@ -16,6 +16,7 @@ def create_app(testing=False):
     if not testing:
         username = os.environ['MONGO_USERNAME']
         password = os.environ['MONGO_PASSWORD']
+        app.config["DEBUG"] = True
         app.config["MONGO_DBNAME"] = "games"
         app.config["MONGO_URI"] = (
             "mongodb+srv://"
@@ -34,14 +35,14 @@ def create_app(testing=False):
         users_collection = db["users"]
 
     api.add_resource(
-        war.War,
+        War,
         "/war/start",
         endpoint="war_start_ep",
         resource_class_kwargs={"users_collection": users_collection},
     )
 
     api.add_resource(
-        user.User,
+        User,
         "/user/<int:user_id>",
         endpoint="user_ep",
         resource_class_kwargs={"users_collection": users_collection},
