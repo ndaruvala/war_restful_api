@@ -51,13 +51,6 @@ def create_app(testing=False):
         resource_class_kwargs={"users_collection": users_collection},
     )
 
-    class HelloWorld(Resouce):
-        def get(self):
-            return {'hello': 'world'}
-    api.add_resource(HelloWorld, '/')
-
-    return app
-
 
 if "__name__" == "__main__":
     create_app()
