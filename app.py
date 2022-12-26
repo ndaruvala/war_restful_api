@@ -1,10 +1,10 @@
+from war_restful_api.resources.war import War
+from war_restful_api.resources.user import User
 from flask import Flask
 from flask_restful import Api
 from flask_pymongo import PyMongo, MongoClient
 from flask_cors import CORS
 import urllib
-from war_restful_api.resources.war import War
-from war_restful_api.resources.user import User
 import os
 
 
