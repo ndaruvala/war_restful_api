@@ -1,7 +1,7 @@
 from flask_pymongo import MongoClient
 import os
 import pytest
-from games import create_app
+from ..app import create_app
 
 
 def setup_test_database():
