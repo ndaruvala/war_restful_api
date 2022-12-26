@@ -3,8 +3,8 @@ from flask_restful import Api
 from flask_pymongo import PyMongo, MongoClient
 from flask_cors import CORS
 import urllib
-from war_restful_api.resources.war import War
-from war_restful_api.resources.user import User
+import war_restful_api.resources.war
+import war_restful_api.resources.user
 import os
 
 
@@ -34,14 +34,14 @@ def create_app(testing=False):
         users_collection = db["users"]
 
     api.add_resource(
-        War,
+        war.War,
         "/war/start",
         endpoint="war_start_ep",
         resource_class_kwargs={"users_collection": users_collection},
     )
 
     api.add_resource(
-        User,
+        user.User,
         "/user/<int:user_id>",
         endpoint="user_ep",
         resource_class_kwargs={"users_collection": users_collection},
