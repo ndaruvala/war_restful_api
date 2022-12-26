@@ -34,6 +34,8 @@ def create_app(testing=False):
         db = mongo["testdatabase"]
         users_collection = db["users"]
 
+    app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
     api.add_resource(
         War,
         "/war/start",
