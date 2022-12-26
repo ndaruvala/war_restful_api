@@ -1,4 +1,4 @@
-from ..app import create_app
+from war_restful_api.app import create_app
 from flask_pymongo import MongoClient
 import os
 import pytest
@@ -27,25 +27,18 @@ def client():
     yield client
 
 
-def test_get_wins_1(client):
-    response = client.get('/user/1')
+def test_update_wins(client):
+    response = client.post('/war/start')
     data = response.get_json()
+    winner = data['winner']
 
     client = MongoClient()
     db = client["testdatabase"]
-    user = db.users.find_one({"id": 1})
 
-    assert data["id"] == user["id"]
-    assert data["wins"] == user["wins"]
+    player1 = db.users.find_one({"id": 1})
+    player2 = db.users.find_one({"id": 2})
 
-
-def test_get_wins_2(client):
-    response = client.get('/user/2')
-    data = response.get_json()
-
-    client = MongoClient()
-    db = client["testdatabase"]
-    user = db.users.find_one({"id": 2})
-
-    assert data["id"] == user["id"]
-    assert data["wins"] == user["wins"]
+    if winner == "player1":
+        assert player1["wins"] == 1 and player2["wins"] == 0
+    else:
+        assert player2["wins"] == 1 and player1["wins"] == 0

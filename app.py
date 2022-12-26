@@ -1,5 +1,5 @@
-from war_restful_api.resources.war import War
-from war_restful_api.resources.user import User
+from war_restful_api.src.resources.war import War
+from war_restful_api.src.resources.user import User
 from flask import Flask
 from flask_restful import Api
 from flask_pymongo import PyMongo, MongoClient
