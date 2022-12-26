@@ -1,5 +1,8 @@
-from war_restful_api.src.resources.war import War
-from war_restful_api.src.resources.user import User
+try:
+    from war_restful_api.src.resources.war import War
+    from war_restful_api.src.resources.user import User
+except:
+    pass
 from flask import Flask
 from flask_restful import Api
 from flask_pymongo import PyMongo, MongoClient
