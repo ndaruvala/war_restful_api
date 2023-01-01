@@ -53,6 +53,4 @@ def create_app(testing=False):
 
     return app
 
-
-if "__name__" == "__main__":
-    create_app()
+app = create_app()
