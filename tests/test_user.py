@@ -1,4 +1,4 @@
-from war_restful_api.app import create_app
+from src import create_app
 from flask_pymongo import MongoClient
 import os
 import pytest

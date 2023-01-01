@@ -1,11 +1,14 @@
-from war_restful_api.resources.war import War
-from war_restful_api.resources.user import User
+from src.resources.war import War
+from src.resources.user import User
 from flask import Flask
 from flask_restful import Api
 from flask_pymongo import PyMongo, MongoClient
 from flask_cors import CORS
 import urllib
 import os
+
+USERNAME = os.environ['MONGO_USERNAME']
+PASSWORD = os.environ['MONGO_PASSWORD']
 
 
 def create_app(testing=False):
@@ -14,15 +17,13 @@ def create_app(testing=False):
     CORS(app)
 
     if not testing:
-        username = os.environ['MONGO_USERNAME']
-        password = os.environ['MONGO_PASSWORD']
         app.config["DEBUG"] = True
         app.config["MONGO_DBNAME"] = "games"
         app.config["MONGO_URI"] = (
             "mongodb+srv://"
-            + urllib.parse.quote_plus(username)
+            + urllib.parse.quote_plus(USERNAME)
             + ":"
-            + urllib.parse.quote_plus(password)
+            + urllib.parse.quote_plus(PASSWORD)
             + "@cluster0.jtwfi.mongodb.net/games?retryWrites=true&w=majority"
         )
         mongo = PyMongo(app)
