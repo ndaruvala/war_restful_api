@@ -13,8 +13,8 @@ As a response, you will receive the winner of the game as well as the outcomes f
 each round of the game.
 
 To retreive the lifetime wins for a certain player:
-Send a GET request to the "https://war-restful-api.herokuapp.com//user/<int:user_id>" endpoint, 
-replacing "<int:user_id>" with the user id of the desired player.
+Send a GET request to the "https://war-restful-api.herokuapp.com//user/{int:user_id}" endpoint, 
+replacing "{int:user_id}" with the user id of the desired player.
 To get player 1's lifetime wins, use 1 as the user_id. For player 2, use 2 as the user_id.
 
 To the run the unit tests included in the API:
